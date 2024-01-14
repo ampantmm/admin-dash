@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#root {
+  height: 100vh;
+}
+
+.accommodation-type span,
+.accommodation,
+.transport,
+.patient {
+  display: flex;
+  padding: 5px 15px;
+  border-radius: 6px;
+  font-weight: bold;
+  width: fit-content;
+}
+
+.house, .accommodation {
+  background-color: lightcoral;
+}
+
+.apartment, .transport {
+  background-color: lightgreen;
+}
+
+.room, .patient {
+  background-color: lightblue;
+}
+
+.row-hover td:not(:last-of-type){
+  cursor: pointer;
+}
+
+.leaflet-container {
+  width: 100%;
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
+  z-index: 99;
+}
+.react-datepicker-popper {
+  z-index: 99;
+}
