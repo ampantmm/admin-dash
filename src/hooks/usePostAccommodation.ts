@@ -1,18 +1,18 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { customFetch } from '../lib/customFetch'
 import { Accommodation } from '../lib/api.types'
-import { useAuth } from '../components/auth/useAuth'
+import { useCustomFetch } from './useCustomFetch'
 
 export const usePostAccommodation = () => {
-    const queryClient = useQueryClient()
-    const { token } = useAuth()
+  const queryClient = useQueryClient()
+  const customFetch = useCustomFetch()
 
-    return useMutation({
-        mutationKey: ['postAccommodation'],
-        mutationFn: (accommodationData: Accommodation) =>
-            customFetch(`/accommodations`, { method: 'POST' }, token, accommodationData),
-        onSuccess: () => {
-            return queryClient.invalidateQueries({ queryKey: ['accommodations'] })
-        },
-    })
+  return useMutation({
+    mutationKey: ['postAccommodation'],
+    mutationFn: (accommodationData: Accommodation) => {
+      return customFetch(`/accommodations`, { method: 'POST' }, accommodationData)
+    },
+    onSuccess: () => {
+      return queryClient.invalidateQueries({ queryKey: ['accommodations'] })
+    },
+  })
 }
